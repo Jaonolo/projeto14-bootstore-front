@@ -10,6 +10,8 @@ import Login from './Components/Login';
 import Register from './Components/Register';
 import Home from './Components/Home';
 
+import NewProduct from './Components/NewProduct';
+
 function App() {
 	return (
 		<BrowserRouter>
@@ -17,6 +19,8 @@ function App() {
 				<Route path="/" element={<Login />} />
 				<Route path="/register" element={<Register />} />
 				<Route path="/home" element={<Home />} />
+
+				<Route path="/newProduct" element={<NewProduct />} />
 			</Routes>
 		</BrowserRouter>
 	);
