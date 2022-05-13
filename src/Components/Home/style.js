@@ -7,9 +7,14 @@ const Container = styled.div`
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    background-color: lightblue;
+    background-color: #ededed;
+
+    overflow: scroll;
+
+    h1 {
+        font-size: 100px;
+    }
 
     @media (min-width: 768px) {
         width: 25%;

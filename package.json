@@ -31,7 +31,10 @@
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.3.0",
     "styled-components": "^5.3.5",
+<<<<<<< HEAD
     "uploader": "^1.45.14",
+=======
+>>>>>>> jaonolo
     "url-loader": "^4.1.1"
   }
 }

@@ -9,7 +9,7 @@ const LoginContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: orange;
+    background-color: var(--main-color);
 
     @media (min-width: 768px) {
         width: 25%;
