@@ -13,20 +13,23 @@ import Home from './Components/Home';
 import TokenContext from './Contexts/TokenContext';
 
 import NewProduct from './Components/NewProduct';
+import YourStore from './Components/YourStore';
 
 function App() {
 	const [token, setToken] = useState(localStorage.getItem("log"))
 
 	return (
-		<BrowserRouter>
-			<Routes>
-				<Route path="/" element={<Login />} />
-				<Route path="/register" element={<Register />} />
-				<Route path="/home" element={<Home />} />
-
-				<Route path="/newProduct" element={<NewProduct />} />
-			</Routes>
-		</BrowserRouter>
+		<TokenContext.Provider value={{token, setToken}}>
+			<BrowserRouter>
+				<Routes>
+					<Route path="/" element={<Login />} />
+					<Route path="/register" element={<Register />} />
+					<Route path="/home" element={<Home />} />
+					<Route path="/newProduct" element={<NewProduct />} />
+					<Route path="/yourStore" element={<YourStore />} />
+				</Routes>
+			</BrowserRouter>
+		</TokenContext.Provider>
 	);
 }
 
