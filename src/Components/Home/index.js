@@ -1,29 +1,35 @@
 import React from 'react';
 import styled from 'styled-components'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { useEffect } from 'react';
 import axios from 'axios';
 // import { Link } from 'react-router-dom'
 
 import Header from './Header';
 import ProductButton from './ProductButton';
+import TokenContext from '../../Contexts/TokenContext';
 
 import Container from "./style"
+import Sidebar from './Sidebar';
 
 export default function Home() {
     const [data, setData] = useState(null)
-    /*const BACK_URL = ''
+    const [sidebar, setSidebar] = useState(false)
 
-    useEffect(async () => {
-        try {
+    const { token } = useContext(TokenContext)
+    const BACK_URL = 'https://bootstore10.herokuapp.com'
 
-            const response = await axios.get(BACK_URL+'/products')
+    /*useEffect(() => {
+        axios.get(BACK_URL+'/products').then((response) => {
             setData(response.body)
-        
-        } catch (error) {
-            alert("Erro ao tentar entrar em contato com o servidor")
-        }
+            console.log(response.body)
+        }, {
+            
+            headers: {
+                authorization: token
+            }
 
+        }).catch(() => alert("Erro ao tentar entrar em contato com o servidor"))
     }, [])*/
 
     const produtos = [{
@@ -59,10 +65,11 @@ export default function Home() {
     }]
 
     return <Container>
-        <Header />
+        <Header setSidebar={setSidebar} />
         <ProductGallery>
             {produtos.map(e => <ProductButton product = {e} />)}    
         </ProductGallery>
+        <Sidebar sidebarController={[sidebar, setSidebar]}></Sidebar>
     </Container>
 }
 
