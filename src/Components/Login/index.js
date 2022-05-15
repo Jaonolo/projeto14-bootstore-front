@@ -4,8 +4,12 @@ import React from 'react';
 import axios from 'axios';
 
 import LoginContainer from "./style"
+import TokenContext from '../../Contexts/TokenContext';
+import { useContext } from 'react';
 
 export default function ComponentA() {
+
+    const { setToken } = useContext(TokenContext)
 
     const navigate = useNavigate();
     const [data, setData] = useState({ email: null, password: null });
@@ -18,6 +22,7 @@ export default function ComponentA() {
 
             setData({ username: res.data.name, token: res.data.token });
             localStorage.setItem('log', res.data.token);
+            setToken(res.data.token)
             localStorage.setItem('name', res.data.username);
             return navigate('/home');
 

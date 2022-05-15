@@ -5,9 +5,10 @@ const Container = styled.div`
     width: 100%;
     height: 100vh;
 
+    position: relative;
+
     display: flex;
     flex-direction: column;
-    align-items: center;
     background-color: #ededed;
 
     overflow: scroll;

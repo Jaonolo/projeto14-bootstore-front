@@ -1,56 +1,34 @@
 import React from 'react';
-<<<<<<< HEAD
-import { useState, useEffect } from 'react'
+import styled from 'styled-components'
+import { useState, useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios';
-=======
-import styled from 'styled-components'
-import { useState } from 'react'
-import { useEffect } from 'react';
-import axios from 'axios';
-// import { Link } from 'react-router-dom'
->>>>>>> jaonolo
 
 import Header from './Header';
 import ProductButton from './ProductButton';
+import TokenContext from '../../Contexts/TokenContext';
 
 import Container from "./style"
+import Sidebar from './Sidebar';
 
 export default function Home() {
     const [data, setData] = useState(null)
-    /*const BACK_URL = ''
+    const [sidebar, setSidebar] = useState(false)
 
-<<<<<<< HEAD
-    const API = 'http://localhost:5000/getProducts'
+    const { token } = useContext(TokenContext)
+    const BACK_URL = 'https://bootstore10.herokuapp.com'
 
-    useEffect(() => {
-
-        axios.get(`${API}`).then(res => {
-            console.log(res.data)
-        }).catch(err => {
-            console.log(err)
-        });
-
-    }, [API]);
-
-    return (
-        <Container>
-            <h1>this is a home bro</h1>
-            <Link to='/newProduct'>create new product</Link>
-        </Container>
-    )
-}
-=======
-    useEffect(async () => {
-        try {
-
-            const response = await axios.get(BACK_URL+'/products')
+    /*useEffect(() => {
+        axios.get(BACK_URL+'/products').then((response) => {
             setData(response.body)
-        
-        } catch (error) {
-            alert("Erro ao tentar entrar em contato com o servidor")
-        }
+            console.log(response.body)
+        }, {
+            
+            headers: {
+                authorization: token
+            }
 
+        }).catch(() => alert("Erro ao tentar entrar em contato com o servidor"))
     }, [])*/
 
     const produtos = [{
@@ -86,10 +64,11 @@ export default function Home() {
     }]
 
     return <Container>
-        <Header />
+        <Header setSidebar={setSidebar} />
         <ProductGallery>
             {produtos.map(e => <ProductButton product = {e} />)}    
         </ProductGallery>
+        <Sidebar sidebarController={[sidebar, setSidebar]}></Sidebar>
     </Container>
 }
 
@@ -100,4 +79,3 @@ const ProductGallery = styled.div`
     padding: 12px 12px;
     gap: 12px
 `
->>>>>>> jaonolo

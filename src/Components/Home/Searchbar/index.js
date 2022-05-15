@@ -1,11 +1,11 @@
 import React from "react"
 import styled from 'styled-components'
 
-import hamburguer from '../../../icons8-menu-arredondado-100.png'
+import hamburguer from '../../../Assets/bars-solid.svg'
 
-export default function Searchbar() {
+export default function Searchbar({ setSidebar }) {
     return <SearchbarContainer>
-        <button>
+        <button onClick={() => setSidebar(true)}>
             <img src={hamburguer} />
         </button>
         <form>
@@ -14,7 +14,6 @@ export default function Searchbar() {
         </form>
     </SearchbarContainer>
 }
-
 
 const SearchbarContainer = styled.nav`
     padding: 10px;

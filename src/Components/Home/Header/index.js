@@ -4,9 +4,9 @@ import styled from 'styled-components'
 import OptionsMenu from '../OptionsMenu'
 import Searchbar from '../Searchbar'
 
-export default function Header() {
+export default function Header({ setSidebar }) {
     return <HeaderContainer>
-        <Searchbar></Searchbar>
+        <Searchbar setSidebar={setSidebar} ></Searchbar>
         <OptionsMenu></OptionsMenu>
     </HeaderContainer>
 }
