@@ -9,12 +9,14 @@ export default function ComponentA() {
 
     const navigate = useNavigate();
     const [data, setData] = useState({ name: null, email: null, password: null, repeat_password: null });
-    const API = `https://bootstore10.herokuapp.com`;
+    const API = `http://localhost:5000`;
 
     function HandleSubmit(e) {
 
         e.preventDefault()
-        axios.post(`${API}/register`, data).then(res => navigate('/')).catch(err => alert(err.response.data));
+        axios.post(`${API}/register`, data).then(res => navigate('/')).catch(err => {
+            alert(err.response.data)
+        });
     }
 
     return (

@@ -2,15 +2,23 @@ import React from 'react'
 import styled from 'styled-components'
 import SidebarHeader from './SidebarHeader'
 
+import { useNavigate } from 'react-router-dom'
+
 export default function Sidebar({sidebarController}) {
     const [toggle, setToggle] = sidebarController
+    const navigate = useNavigate()
+
+    const navigateOptions = [
+        {text: "Home", destination: "/home"},
+        {text: "Sua loja", destination: "/yourStore"},
+        {text: "Histórico de compras", destination: "/history"},
+    ]
 
     return <SidebarContainer toggle={toggle}>
         <article>
             <SidebarHeader/>
             <div>
-                <button>Ver Histórico de compras</button>
-                <button>Ver sua loja</button>
+                {navigateOptions.map(e => <button onClick={() => navigate(e.destination)}>{e.text}</button>)}
             </div>
         </article>
         <div onClick={() => setToggle(false)}></div>

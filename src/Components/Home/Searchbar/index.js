@@ -1,9 +1,13 @@
 import React from "react"
+import { useNavigate } from "react-router-dom"
 import styled from 'styled-components'
 
 import hamburguer from '../../../Assets/bars-solid.svg'
+import cart from '../../../Assets/cart-shopping-solid.svg'
 
 export default function Searchbar({ setSidebar }) {
+    const navigate = useNavigate()
+
     return <SearchbarContainer>
         <button onClick={() => setSidebar(true)}>
             <img src={hamburguer} />
@@ -12,6 +16,9 @@ export default function Searchbar({ setSidebar }) {
             <input />
             <button className="search-button">Procurar</button>
         </form>
+        <button onClick={() => navigate("/cart")}>
+            <img src={cart} />
+        </button>
     </SearchbarContainer>
 }
 

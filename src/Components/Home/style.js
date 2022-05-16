@@ -9,7 +9,7 @@ const Container = styled.div`
 
     display: flex;
     flex-direction: column;
-    background-color: #ededed;
+    background-color: var(--neutral-grey);
 
     overflow: scroll;
 

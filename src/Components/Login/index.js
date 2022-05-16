@@ -4,28 +4,28 @@ import React from 'react';
 import axios from 'axios';
 
 import LoginContainer from "./style"
-import TokenContext from '../../Contexts/TokenContext';
+import UserContext from '../../Contexts/UserContext';
 import { useContext } from 'react';
 
 export default function ComponentA() {
 
-    const { setToken } = useContext(TokenContext)
+    const { setUser } = useContext(UserContext)
 
     const navigate = useNavigate();
     const [data, setData] = useState({ email: null, password: null });
-    const API = `https://bootstore10.herokuapp.com`;
+    const API = `http://localhost:5000`;
 
     function HandleSubmit(e) {
 
         e.preventDefault();
         axios.post(`${API}/login`, data).then(res => {
+            const user = { 
+                name: res.data.name,
+                token: res.data.token
+            }
 
-            setData({ username: res.data.name, token: res.data.token });
-            localStorage.setItem('log', res.data.token);
-            setToken(res.data.token)
-            localStorage.setItem('name', res.data.username);
-            return navigate('/home');
-
+            localStorage.setItem('user', JSON.stringify(user));
+            setUser(user)
         }).catch(err => alert(err.response.data));
     }
 

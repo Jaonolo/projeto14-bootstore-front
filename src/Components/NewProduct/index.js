@@ -1,13 +1,20 @@
+import axios from 'axios';
 import React from 'react';
 import { useState } from 'react'
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Uploader } from "uploader";
 
 import cam from '../../../public/img/cam.png';
+import UserContext from '../../Contexts/UserContext';
+import ReturnButton from '../Home/ReturnButton';
 
 import Container from "./style";
 
 export default function NewProduct() {
+    const {user} = useContext(UserContext)
 
+    const navigate = useNavigate()
     const uploader = new Uploader({ apiKey: "free" });
     const [data, setData] = useState({
 
@@ -23,7 +30,9 @@ export default function NewProduct() {
 
     function HandleSubmit(e) {
         e.preventDefault();
-        console.log(data);
+        axios.post('/setProducts', data, { headers: { authorization: 'Bearer ' + user.token } })
+            .then(() => navigate('/'))
+            .catch(() => alert("Erro ao tentar entrar em contato com o servidor"))
     }
 
     function uploadFiles() {
@@ -38,7 +47,10 @@ export default function NewProduct() {
 
         <Container productImage={data.productImage ? data.productImage : cam}>
 
-            <div className="header"><h1>Anunciar Produto</h1></div>
+            <div className="header">
+                <h1>Anunciar Produto</h1>
+                <ReturnButton/>
+            </div>
             <div className="img-container"><div className="img"></div></div>
             <div className="add-image"><button onClick={uploadFiles}>Adicionar Foto</button></div>
 

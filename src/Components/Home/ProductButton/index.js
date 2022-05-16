@@ -1,8 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from 'styled-components'
 
 export default function ProductButton({ product }) {
-    return <ProductButtonContainer>
+    const navigate = useNavigate()
+
+    return <ProductButtonContainer onClick={() => navigate(`/product/${product.productID}`)}>
         <img src={product.productImage} />
         <section>
             <p>{product.productName}</p>

@@ -18,8 +18,9 @@ const Container = styled.div`
         width: 100%;
         height: 10%;
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
+        padding: 0 20px;
 
         h1 {
 

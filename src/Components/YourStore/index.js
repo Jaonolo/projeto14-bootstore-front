@@ -6,7 +6,7 @@ import axios from 'axios';
 
 import Header from '../Home/Header';
 import ProductButton from '../Home/ProductButton';
-import TokenContext from '../../Contexts/TokenContext';
+import UserContext from '../../Contexts/UserContext';
 
 import Container from "../Home/style"
 import Sidebar from '../Home/Sidebar';
@@ -19,28 +19,15 @@ export default function YourStore() {
 
     const navigate = useNavigate()
 
-    const { token } = useContext(TokenContext)
-    const BACK_URL = 'https://bootstore10.herokuapp.com'
+    const { user } = useContext(UserContext)
+    const BACK_URL = 'http://localhost:5000'
 
-    /*useEffect(() => {
-        axios.get(BACK_URL+'/products').then((response) => {
-            setData(response.body)
-            console.log(response.body)
-        }, {
-            
-            headers: {
-                authorization: token
-            }
-
-        }).catch(() => alert("Erro ao tentar entrar em contato com o servidor"))
-    }, [])*/
-
-    const produtos = [{
-        productName: "oi",
-        productPrice: 200,
-        productDescription: "jão",
-        productImage: 'https://http.cat/404.png'
-    }]
+    useEffect(() => {
+        axios
+            .get(BACK_URL+`/mystore`, { headers: { authorization: 'Bearer ' + user.token } })
+            .then(response => setData(response.body))
+            .catch(() => alert("Erro ao tentar entrar em contato com o servidor"))
+    }, [])
 
     return <Container>
         <Header setSidebar={setSidebar} />
@@ -51,7 +38,7 @@ export default function YourStore() {
                     <img src={addCircle} />
                 </button>
             </div>
-            {produtos.map(e => <ProductButton product = {e} />)}    
+            {data ? data.map(e => <ProductButton product = {e} />) : "Ainda não há produtos na sua loja"}    
         </ProductGallery>
         <Sidebar sidebarController={[sidebar, setSidebar]}></Sidebar>
     </Container>

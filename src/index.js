@@ -10,26 +10,37 @@ import '../public/stylesheets/fonts.css';
 import Login from './Components/Login';
 import Register from './Components/Register';
 import Home from './Components/Home';
-import TokenContext from './Contexts/TokenContext';
+import Cart from './Components/Cart';
+import History from './Components/History'
+import UserContext from './Contexts/UserContext';
 
 import NewProduct from './Components/NewProduct';
 import YourStore from './Components/YourStore';
+import ProductScreen from './Components/ProductScreen';
+import RoutesController from './Components/RoutesController'
 
 function App() {
-	const [token, setToken] = useState(localStorage.getItem("log"))
+	const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")))
 
 	return (
-		<TokenContext.Provider value={{token, setToken}}>
+		<UserContext.Provider value={{user, setUser}}>
 			<BrowserRouter>
 				<Routes>
-					<Route path="/" element={<Login />} />
-					<Route path="/register" element={<Register />} />
-					<Route path="/home" element={<Home />} />
-					<Route path="/newProduct" element={<NewProduct />} />
-					<Route path="/yourStore" element={<YourStore />} />
+					<Route element={<RoutesController needsUser={false} />}>
+						<Route path="/" element={<Login />} />
+						<Route path="/register" element={<Register />} />
+					</Route>
+					<Route element={<RoutesController needsUser={true}/>}>
+						<Route path="/home" element={<Home />} />
+						<Route path="/newProduct" element={<NewProduct />} />
+						<Route path="/yourStore" element={<YourStore />} />
+						<Route path="/product/:id" element={<ProductScreen />} />
+						<Route path="/cart" element={<Cart />} />
+						<Route path="/history" element={<History />} />
+					</Route>
 				</Routes>
 			</BrowserRouter>
-		</TokenContext.Provider>
+		</UserContext.Provider>
 	);
 }
 

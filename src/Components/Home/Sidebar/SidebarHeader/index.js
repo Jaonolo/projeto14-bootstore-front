@@ -3,15 +3,24 @@ import styled from 'styled-components'
 
 import profile from '../../../../Assets/user-solid.svg'
 import logout from '../../../../Assets/right-from-bracket-solid.svg'
+import { useContext } from 'react'
+import UserContext from '../../../../Contexts/UserContext'
 
 export default function SidebarHeader() {
+    const { user, setUser } = useContext(UserContext)
+
+    const logoutFunction = () => {
+        localStorage.setItem("user", JSON.stringify(null))
+        setUser(null)
+    }
+    
     return <SidebarHeaderContainer>
         <main>
             <div>
                 <img src={profile}/>
-                <p>Olá, {true}</p>
+                <p>Olá, {user.name}</p>
             </div>
-            <img src={logout}/>
+            <img src={logout} onClick={logoutFunction}/>
         </main>
     </SidebarHeaderContainer>
 }
