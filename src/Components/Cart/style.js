@@ -51,6 +51,15 @@ const Container = styled.div`
         background-color: var(--main-color);
     }
 
+    .price {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        background-color: #FFFFFF;
+        font-size: 20px;
+    }
+
     .close-button {
         display: flex;
         width: 100%;

@@ -19,6 +19,7 @@ const ProductButtonContainer = styled.div`
     display: flex;
     width: 100%;
     border-radius: 5px;
+    height: 100px;
     
     img {
         height: 100px;

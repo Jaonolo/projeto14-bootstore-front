@@ -14,6 +14,8 @@ import Container from "./style";
 export default function NewProduct() {
     const {user} = useContext(UserContext)
 
+    const BACK_URL = 'http://localhost:5000'
+
     const navigate = useNavigate()
     const uploader = new Uploader({ apiKey: "free" });
     const [data, setData] = useState({
@@ -23,14 +25,14 @@ export default function NewProduct() {
         productDescription: null,
         productImage: null,
         productCategory: null,
-        productQuantity: null,
-        productStatus: null
+        productQuantity: 1,
+        productStatus: 'available'
 
     });
 
     function HandleSubmit(e) {
         e.preventDefault();
-        axios.post('/setProducts', data, { headers: { authorization: 'Bearer ' + user.token } })
+        axios.post(BACK_URL + '/setProducts', data, { headers: { authorization: 'Bearer ' + user.token } })
             .then(() => navigate('/'))
             .catch(() => alert("Erro ao tentar entrar em contato com o servidor"))
     }
@@ -60,7 +62,7 @@ export default function NewProduct() {
                     <input type='text' placeholder='Nome do produto' required
                         onChange={e => setData({ ...data, productName: e.target.value })} />
                     <input type='text' placeholder='Preco' required
-                        onChange={e => setData({ ...data, productPrice: e.target.value })} />
+                        onChange={e => setData({ ...data, productPrice: 1*e.target.value })} />
                     <input type='text' placeholder='Descricao' required
                         onChange={e => setData({ ...data, productDescription: e.target.value })} />
 

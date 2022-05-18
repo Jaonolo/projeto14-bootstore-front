@@ -28,7 +28,7 @@ export default function Home() {
     return <Container>
         <Header setSidebar={setSidebar} />
         <ProductGallery>
-            {data === null ? "Não conseguimos encontrar produtos ;--;" : data.map(e => <ProductButton product = {e} />)}    
+            {!(data === null || data?.length === 0) ? data.map(e => <ProductButton product = {e} />) : "Não conseguimos encontrar produtos ;--;"}    
         </ProductGallery>
         <Sidebar sidebarController={[sidebar, setSidebar]}></Sidebar>
     </Container>

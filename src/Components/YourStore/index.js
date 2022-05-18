@@ -25,7 +25,10 @@ export default function YourStore() {
     useEffect(() => {
         axios
             .get(BACK_URL+`/mystore`, { headers: { authorization: 'Bearer ' + user.token } })
-            .then(response => setData(response.body))
+            .then(response => {
+                console.log(response.data)
+                setData(response.data)
+            })
             .catch(() => alert("Erro ao tentar entrar em contato com o servidor"))
     }, [])
 
@@ -38,7 +41,7 @@ export default function YourStore() {
                     <img src={addCircle} />
                 </button>
             </div>
-            {data ? data.map(e => <ProductButton product = {e} />) : "Ainda não há produtos na sua loja"}    
+            {!(data === null || data?.length === 0) ? data.map(e => <ProductButton product = {e} />) : "Ainda não há produtos na sua loja"}   
         </ProductGallery>
         <Sidebar sidebarController={[sidebar, setSidebar]}></Sidebar>
     </Container>
@@ -66,4 +69,5 @@ const ProductGallery = styled.div`
             display: flex;
         }
     }
+    overflow: hidden;
 `

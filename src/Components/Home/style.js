@@ -23,6 +23,6 @@ const Container = styled.div`
         border: 1px solid white;
         border-radius: 20px;
     }
-
+    overflow: hidden;
 `
 export default Container;
